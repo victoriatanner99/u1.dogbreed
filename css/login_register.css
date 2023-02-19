@@ -1,0 +1,13 @@
+#register {
+  margin-bottom: 20px;
+}
+
+.logreg {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input {
+  height: 20px;
+}

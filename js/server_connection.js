@@ -1,6 +1,9 @@
 //här ska åtminstone funktionen som inkluderar fetch-anropet finnas
 "use strict";
 
+let random_dog = ALL_BREEDS[Math.floor(Math.random() * ALL_BREEDS.length)];
+console.log(random_dog);
+
 async function fetch_data(type, dog_object) {
   const username = document.querySelector(".input_username");
   const password = document.querySelector(".input_password");
@@ -22,7 +25,6 @@ async function fetch_data(type, dog_object) {
       console.log(resource);
     } catch (error) {
       console.log(error);
-      fetch_data("get", get_request);
     }
   }
 
@@ -46,20 +48,21 @@ async function fetch_data(type, dog_object) {
       return resource;
     } catch (error) {
       console.log(error);
+      fetch_data("post", post_request);
     }
   }
 
   if (type === "dog") {
     try {
-        let response = await fetch(dog_request);
-        let resource = await response.json();
-        console.log(resource);
-        return resource;
+      let response = await fetch(dog_request);
+      let resource = await response.json();
+      console.log(resource);
+      return resource;
     } catch (error) {
-        console.log(error);
+      console.log(error);
+      fetch_data("dog", dog_request);
     }
   }
-
 }
 
-fetch_data("dog", ALL_BREEDS[4]);
+fetch_data("dog", random_dog);

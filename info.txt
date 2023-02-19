@@ -1,0 +1,8 @@
+funktion eventlistener förändrar innehållet
+
+funktion baserat på om den ska göra en get request eller post request
+get i login
+post i register
+
+window.localStorage
+

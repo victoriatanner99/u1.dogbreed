@@ -1,13 +1,40 @@
-#register {
+/*#register {
   margin-bottom: 20px;
-}
+}*/
 
-.logreg {
+/*.logreg {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}*/
+
+/*input {
+  height: 20px;
+}*/
+
+/*#dog_image {
+  height: 100px;
+  width: 100px;
+}*/
+
+@keyframes registerpage {
+  0% {background-color: skyblue;}
+  100% {background-color: coral;}
 }
 
-input {
-  height: 20px;
+@keyframes loginpage{
+  0% {background-color: coral;}
+  100% {background-color: skyblue;}
 }
+
+#wrapper {
+  animation-duration: 0.5s; 
+  animation-fill-mode: forwards; /* när animationen är slut, behåll den sista property*/
+}
+
+#doggies {
+  display: none;
+}
+
+
+

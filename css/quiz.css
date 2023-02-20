@@ -1,0 +1,28 @@
+.dog_image {
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logreg {
+  display: none;
+}
+
+#doggies {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  height: 300px;
+  gap: 10px;
+}
+
+.option_boxes {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: 5px;
+}
+
+.api {
+    margin-top: 100px
+}

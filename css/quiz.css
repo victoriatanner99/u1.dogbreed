@@ -1,8 +1,14 @@
 .dog_image {
-  border-radius: 5px;
+  border-radius: 15px;
+  max-height: 45vh;
+  width: 100%;
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+
+  bottom: 10vh;
 }
 
 .logreg {
@@ -10,10 +16,9 @@
 }
 
 #doggies {
-  display: grid;
-  grid-template-rows: 3fr 1fr;
-  height: 300px;
+  height: 350px;
   gap: 10px;
+  padding: 0 10px 0 10px;
 }
 
 .option_boxes {
@@ -21,8 +26,44 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
   gap: 5px;
+
+  position: relative;
+    bottom: 8vh;
 }
 
 .api {
-    margin-top: 100px
+  margin-top: 100px;
+}
+
+#name_bar {
+  display: flex;
+  justify-content: flex-end;
+
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: whitesmoke;
+  grid-row: 2;
+  position: relative;
+  bottom: 7vh;
+}
+
+.log {
+  background-color: gainsboro;
+  height: 26px;
+  width: 53px;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#wrapper {
+  gap: 8vh;
+  overflow: hidden;
+}
+
+footer{
+  grid-row: none;
 }

@@ -1,29 +1,10 @@
-/*#register {
-  margin-bottom: 20px;
-}*/
-
-/*.logreg {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}*/
-
-/*input {
-  height: 20px;
-}*/
-
-/*#dog_image {
-  height: 100px;
-  width: 100px;
-}*/
-
 @keyframes registerpage {
   0% {background-color: skyblue;}
-  100% {background-color: coral;}
+  100% {background-color: pink;}
 }
 
-@keyframes loginpage{
-  0% {background-color: coral;}
+@keyframes loginpage {
+  0% {background-color: pink;}
   100% {background-color: skyblue;}
 }
 
@@ -36,5 +17,6 @@
   display: none;
 }
 
-
-
+#name_bar {
+  display: none;
+} 

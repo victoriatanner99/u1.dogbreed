@@ -71,7 +71,7 @@ h1 {
 button {
   font-size: 20px;
   background-color: gainsboro;
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 5px;
   padding: 12px;
 }
@@ -79,3 +79,44 @@ button {
 .api {
   font-size: 14px;
 }
+
+.logreg {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.feedback{ 
+  visibility: hidden;
+  position: absolute;
+  top: 30%;
+  left: 40%; 
+  padding: 20px;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.feedback_button{
+  height: 10vh;
+  width: 60%;
+  font-size: 10px;
+  background-color: white;
+}
+
+
+.feedback.show{ 
+  visibility: visible;
+}
+
+.feedback_background.show{
+  height: 666px;
+  width: 337px;
+
+  visibility: visible;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+

@@ -20,3 +20,11 @@
 #name_bar {
   display: none;
 } 
+
+.registration{
+  background-color: pink;
+}
+
+.login{
+  background-color: skyblue;
+}

@@ -37,7 +37,7 @@
 
 #name_bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   height: 25px;
   border-radius: 5px;

@@ -5,6 +5,16 @@ let request = "https://teaching.maumt.se/apis/access/";
 
 document.querySelector("#register").addEventListener("click", change_page);
 
+
+function get_username(){
+  if(localStorage.getItem("user_name") === null){
+    change_page();
+  } else {
+    start_quiz(localStorage.getItem("user_name"));
+  }
+}
+
+
 function change_page(event) {
   if (
     document.querySelector("#register").textContent ===
@@ -17,11 +27,16 @@ function change_page(event) {
     document.querySelector("#comment").textContent = "Let the magic start!";
     document.querySelector("#wrapper").style.animationName = "loginpage";
     document.querySelector("#login_button").textContent = "Login";
+    document.querySelector("#comment").classList.remove("registration")
+    document.querySelector("#comment").classList.add("login")
+
     document
       .querySelector("#login_button")
   } else {
     document.querySelector("#register").textContent =
       "Already have an account? Go to login";
+      document.querySelector("#comment").classList.remove("login")
+    document.querySelector("#comment").classList.add("registration");
     document.querySelector("h1").textContent = "REGISTER";
     document.querySelector("#comment").textContent = "Ready when you are...";
     document.querySelector("#wrapper").style.animationName = "registerpage";
@@ -42,9 +57,6 @@ document.querySelector("#login_button").addEventListener("click", e => {
 });
 
 
-
-
-
 async function get_request() {
   const username = document.querySelector("input[type='username']");
   const password = document.querySelector("input[type='password']");
@@ -54,8 +66,12 @@ async function get_request() {
   );
     let response = await fetch_data(get_req);
 
-    if(response.status === 200){
-      start_quiz();
+    if(response.status == 200){
+
+    //  localStorage.setIem("user_name", username.value); 
+
+      start_quiz(username.value);
+
     } else {
       document.querySelector("#comment").textContent = "Wrong username or password";
       document.querySelector("#comment").style.backgroundColor = "white";
@@ -82,8 +98,21 @@ async function add_new_user(post) {
 
   console.log(post_req)
 
-  if (post_req.status === 200) {
-    console.log( "Registration complete. Please proceed to login. Close" );
+  if (post_req.status == 200) {
+    let feedback = document.querySelector(".feedback");
+    let feedback_background = document.querySelector(".feedback_background");
+    feedback_background.classList.add("show");
+    feedback.classList.add("show");  
+    feedback.innerHTML = `
+    <p> Registration complete <br>
+    Please proceed to login. </p>
+    <button> close</button>`
+  
+    feedback.querySelector("button").addEventListener("click", e => { 
+      feedback.classList.remove("show")
+      feedback_background.classList.remove("show");
+    })
+
   } else {
     switch(post_req.status) {
 

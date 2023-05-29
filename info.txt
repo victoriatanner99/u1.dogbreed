@@ -6,3 +6,16 @@ post i register
 
 window.localStorage
 
+eventlistener
+1. välja elementet #register
+2. lägga eventlistener
+
+1. vad ska hända?
+- funktionen ska hämta en random hund
+- resursen (verktyg):
+    en array dvs all_breeds (som innehåller olika objekt)
+    en funktion
+    
+ 2. vad behöver jag?
+- namenet på en hund från objektet inuti all_breeds i random ordning   
+    

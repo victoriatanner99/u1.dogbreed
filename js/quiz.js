@@ -1,8 +1,8 @@
 "use strict";
 
-async function start_quiz(){
+async function start_quiz(user_name){
 
-add_css_changer();
+  add_css_changer();
 
   let options = []
   while(options.length < 4){
@@ -11,6 +11,10 @@ add_css_changer();
       options.push(option);
     }
   }
+
+  document.querySelector("#name_bar").innerHTML = `
+  <p> ${user_name} </p>
+  <button class="log">logout</button>`;
 
 
 const dog_object = options[Math.floor(Math.random() * options.length)];
@@ -32,17 +36,21 @@ for (let i = 0; i < options.length; i++){
   function response(){ 
     if(answer_dom.innerText === dog_object.name){
      let feedback = document.querySelector(".feedback");
-     let feedback_button = document.querySelector(".feedback_button");
+     let feedback_background = document.querySelector(".feedback_background");
      feedback.style.backgroundColor = "green";
      feedback.classList.add("show");  
-     feedback_button.classList.add("show");
-     feedback.innerText = "Right answer!";
+     feedback_background.classList.add("show");
+     feedback.textContent = "Right answer!";
 
-    feedback_button.textContent = "OK";
-    feedback.addEventListener("click", e => { 
-      feedback.classList.remove("show")
-      feedback_button.classList.remove("show");
+    feedback.innerHTML = `
+    <p>Right answer!</p>
+    <button class> TRY AGAIN </button>`;
+    feedback.querySelector("button").addEventListener("click", e => { 
+      feedback.classList.remove("show");
+      feedback_background.classList.remove("show");
 
+      document.querySelector("#name_bar").innerHTML = ``;
+      document.querySelector(".option_boxes").innerHTML = ``;
       start_quiz()
 
 
@@ -50,14 +58,21 @@ for (let i = 0; i < options.length; i++){
   
     } else { 
       let feedback = document.querySelector(".feedback");
+      let feedback_background = document.querySelector(".feedback_background");
       feedback.style.backgroundColor = "red";
+      feedback_background.classList.add("show");
       feedback.classList.add("show");  
-      feedback.innerText = "Wrong Answer!";
-      let feedback_button = document.querySelector(".feedback_button");
-      feedback_button.textContent = "TRY AGAIN";
-      feedback.addEventListener("click", e => { 
+      feedback.innerHTML = `
+      <p> Wrong Answer! </p>
+      <button> TRY AGAIN </button>`
+    
+      feedback.querySelector("button").addEventListener("click", e => { 
         feedback.classList.remove("show")
+        feedback_background.classList.remove("show");
 
+        document.querySelector("#name_bar").innerHTML = ``;
+        document.querySelector(".option_boxes").innerHTML = ``;
+  
         start_quiz()
 
       });

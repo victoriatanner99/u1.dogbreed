@@ -6,9 +6,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
-
-  bottom: 10vh;
 }
 
 .logreg {
@@ -16,9 +13,10 @@
 }
 
 #doggies {
-  height: 350px;
   gap: 10px;
   padding: 0 10px 0 10px;
+
+  grid-row: 3 / 7;
 }
 
 .option_boxes {
@@ -26,13 +24,12 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
   gap: 5px;
-
-  position: relative;
-    bottom: 8vh;
+  margin-top: 15px;
 }
 
 .api {
-  margin-top: 100px;
+  margin-top: 70px;
+  padding: 0 10px 0 10px;
 }
 
 #name_bar {
@@ -43,9 +40,6 @@
   border-radius: 5px;
   padding: 5px;
   background-color: whitesmoke;
-  grid-row: 2;
-  position: relative;
-  bottom: 7vh;
 }
 
 .log {
@@ -64,6 +58,6 @@
   overflow: hidden;
 }
 
-footer{
+footer {
   grid-row: none;
 }

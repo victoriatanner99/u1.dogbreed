@@ -26,7 +26,7 @@ console.log(dog_response);
 document.querySelector(".dog_image").src = `${dog_response.message}`;
 
 function go_home_css () {
-  document.querySelector(".css_file").setAttribute("href", "css/login_register.css");
+  localStorage.clear();
   location.reload();
 }
 
@@ -39,9 +39,9 @@ for (let i = 0; i < options.length; i++){
   document.querySelector(".option_boxes").append(answer_dom);
 
   function response() { 
+    let feedback = document.querySelector(".feedback");
+    let feedback_background = document.querySelector(".feedback_background");
     if(answer_dom.innerText === dog_object.name){
-     let feedback = document.querySelector(".feedback");
-     let feedback_background = document.querySelector(".feedback_background");
      feedback.style.backgroundColor = "green";
      feedback.classList.add("show");  
      feedback_background.classList.add("show");
@@ -60,8 +60,6 @@ for (let i = 0; i < options.length; i++){
     });
   
     } else { 
-      let feedback = document.querySelector(".feedback");
-      let feedback_background = document.querySelector(".feedback_background");
       feedback.style.backgroundColor = "red";
       feedback_background.classList.add("show");
       feedback.classList.add("show");  

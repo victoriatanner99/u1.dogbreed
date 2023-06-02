@@ -42,7 +42,7 @@ document.querySelector("#login_button").addEventListener("click", (event) => {
   if (document.querySelector("#login_button").textContent === "Login") {
     get_request();
   } else {
-    post_request();
+    add_new_user();
   }
 });
 
@@ -62,6 +62,7 @@ async function get_request(request) {
   remove_server_alert();
 
   if (response.status == 200) {
+    localStorage.setItem("user_name", username.value);
     start_quiz(username.value);
   } else {
     if (response.status === 404) {

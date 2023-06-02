@@ -56,9 +56,7 @@ for (let i = 0; i < options.length; i++){
 
       document.querySelector("#name_bar").innerHTML = ``; 
       document.querySelector(".option_boxes").innerHTML = ``;
-      start_quiz()
-
-
+      start_quiz(user_name)
     });
   
     } else { 
@@ -78,7 +76,7 @@ for (let i = 0; i < options.length; i++){
         document.querySelector("#name_bar").innerHTML = ``; 
         document.querySelector(".option_boxes").innerHTML = ``;
   
-        start_quiz()
+        start_quiz(user_name)
 
       });
 

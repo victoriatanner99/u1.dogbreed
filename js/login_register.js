@@ -42,7 +42,7 @@ document.querySelector("#login_button").addEventListener("click", (event) => {
   if (document.querySelector("#login_button").textContent === "Login") {
     get_request();
   } else {
-    add_new_user();
+    post_request();
   }
 });
 

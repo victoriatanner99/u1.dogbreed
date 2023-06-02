@@ -20,38 +20,3 @@
 #name_bar {
   display: none;
 } 
-
-.registration{
-  background-color: pink;
-}
-
-.login{
-  background-color: skyblue;
-}
-
-#alert_background {
-  height: 686px;
-  width: 357px;
-  border-radius: 30px;
-  background-color: rgba(255, 255, 255, 0.5);
-
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-}
-
-#alert_background > .server_text {
-  position: relative;
-  height: 70px;
-  width: 300px;
-  text-align: center;
-  border-radius: 30px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #5277a6;
-  color: white;
-}

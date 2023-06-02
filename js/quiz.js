@@ -13,7 +13,7 @@ async function start_quiz(user_name){
   }
 
   document.querySelector("#name_bar").innerHTML = `
-  <p> ${user_name} </p>
+  <p class="account_name">${user_name}</p>
   <button class="log">logout</button>`;
 
 
@@ -21,11 +21,16 @@ const dog_object = options[Math.floor(Math.random() * options.length)];
 console.log(dog_object);
 const dog_request = `https://dog.ceo/api/breed/${dog_object.url}/images/random`;
 const dog_response = await (await fetch_data(dog_request)).json();
-
-
 console.log(dog_response);
 
 document.querySelector(".dog_image").src = `${dog_response.message}`;
+
+function go_home_css () {
+  document.querySelector(".css_file").setAttribute("href", "css/login_register.css");
+  location.reload();
+}
+
+document.querySelector(".log").addEventListener("click", go_home_css);
 
 for (let i = 0; i < options.length; i++){
   let answer_dom = document.createElement("button");
@@ -33,7 +38,7 @@ for (let i = 0; i < options.length; i++){
   answer_dom.addEventListener("click", response);
   document.querySelector(".option_boxes").append(answer_dom);
 
-  function response(){ 
+  function response() { 
     if(answer_dom.innerText === dog_object.name){
      let feedback = document.querySelector(".feedback");
      let feedback_background = document.querySelector(".feedback_background");
@@ -49,7 +54,7 @@ for (let i = 0; i < options.length; i++){
       feedback.classList.remove("show");
       feedback_background.classList.remove("show");
 
-      document.querySelector("#name_bar").innerHTML = ``;
+      document.querySelector("#name_bar").innerHTML = ``; 
       document.querySelector(".option_boxes").innerHTML = ``;
       start_quiz()
 
@@ -70,7 +75,7 @@ for (let i = 0; i < options.length; i++){
         feedback.classList.remove("show")
         feedback_background.classList.remove("show");
 
-        document.querySelector("#name_bar").innerHTML = ``;
+        document.querySelector("#name_bar").innerHTML = ``; 
         document.querySelector(".option_boxes").innerHTML = ``;
   
         start_quiz()
@@ -84,35 +89,3 @@ for (let i = 0; i < options.length; i++){
 
 
 
-
-//let random_dog = ALL_BREEDS[Math.floor(Math.random() * ALL_BREEDS.length)];
-//console.log(random_dog);
-//
-//async function get_dog(dog_object_link) {
-//  let correct_dog = await fetch_data("dog", random_dog);
-//  document.querySelector("img").src = `${correct_dog.message}`;
-//}
-//
-//get_dog();
-//
-//function get_random_dogname() {
-//  
-//  });
-//}
-//
-//get_random_dogname();
-//
-//async function dog_data(dog_object) {
-//
-//  
-//      document.querySelectorAll(".box").forEach((new_name) => {
- // new_name.textContent = option.name;
-
-//});
-//  console.log(dog_response);
-//
-//  document.querySelector(".dog_image").setAttribute("src", dog_response.message);
-//
-//  };
-//
-//  dog_data(random_dog);

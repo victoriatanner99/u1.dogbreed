@@ -1,10 +1,11 @@
 //här ska åtminstone funktionen som inkluderar fetch-anropet finnas
 "use strict";
 
+//funktionen som inkluderar fetch-anropet
 async function fetch_data(request) {
   let response = await fetch(request);
   return response;
-}
+};
 
 function server_alert (alert) {
   let message_container = document.createElement("div");
@@ -22,7 +23,8 @@ function response_alert (alert) {
   response_background.id = "alert_background";
   document.body.prepend(response_background);
 
-  response_background.innerHTML = `<div> class="popup_resp">${alert}<button>CLOSE</button></div>`;
+  response_background.innerHTML = `<div class="popup_resp">${alert}<button>CLOSE</button></div>`;
 
   document.querySelector(".popup_resp > button").addEventListener("click", () => response_background.remove());
 }
+

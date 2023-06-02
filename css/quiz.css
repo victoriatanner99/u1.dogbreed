@@ -28,7 +28,6 @@
 }
 
 .api {
-  margin-top: 70px;
   padding: 0 10px 0 10px;
 }
 
@@ -60,4 +59,43 @@
 
 footer {
   grid-row: none;
+}
+
+
+.feedback{ 
+  visibility: hidden;
+  top: 30%;
+  left: 30%; 
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  position: absolute;
+}
+
+.feedback_button{
+  height: 10vh;
+  width: 60%;
+  font-size: 10px;
+  background-color: white;
+}
+
+.feedback.show{ 
+  visibility: visible;
+}
+
+.feedback_background.show{
+  height: 686px;
+  width: 357px;
+  border-radius: 30px;
+
+  visibility: visible;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 8px;
+  left: 327px;
+} 
+
+#name_bar>.account_name {
+ display: flex;
+ align-items: center;
 }

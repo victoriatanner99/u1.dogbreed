@@ -1,132 +1,134 @@
 "use strict";
 
-let request = "https://teaching.maumt.se/apis/access/";
-
-
 document.querySelector("#register").addEventListener("click", change_page);
 
-
-function get_username(){
-  if(localStorage.getItem("user_name") === null){
+function get_username() {
+  if (localStorage.getItem("user_name") === null) {
     change_page();
   } else {
     start_quiz(localStorage.getItem("user_name"));
   }
 }
 
-
 function change_page(event) {
   if (
     document.querySelector("#register").textContent ===
-    "Already have an account? Go to login" ) 
-    
-    {
+    "Already have an account? Go to login"
+  ) {
     document.querySelector("#register").textContent =
       "New to this? Register for free";
     document.querySelector("h1").textContent = "LOGIN";
     document.querySelector("#comment").textContent = "Let the magic start!";
     document.querySelector("#wrapper").style.animationName = "loginpage";
     document.querySelector("#login_button").textContent = "Login";
-    document.querySelector("#comment").classList.remove("registration")
-    document.querySelector("#comment").classList.add("login")
+    document.querySelector("#comment").classList.remove("registration");
+    document.querySelector("#comment").classList.add("login");
 
-    document
-      .querySelector("#login_button")
+    document.querySelector("#login_button");
   } else {
     document.querySelector("#register").textContent =
       "Already have an account? Go to login";
-      document.querySelector("#comment").classList.remove("login")
+    document.querySelector("#comment").classList.remove("login");
     document.querySelector("#comment").classList.add("registration");
     document.querySelector("h1").textContent = "REGISTER";
     document.querySelector("#comment").textContent = "Ready when you are...";
     document.querySelector("#wrapper").style.animationName = "registerpage";
     document.querySelector("#login_button").textContent = "Registration";
-    document
-      .querySelector("#login_button")
+    document.querySelector("#login_button");
   }
-};
+}
 
-document.querySelector("#login_button").addEventListener("click", e => {
-
-  if(document.querySelector("#login_button").innerText === "Login"){
-    get_request(); 
-  }else {
-    add_new_user();
-    }
-
+document.querySelector("#login_button").addEventListener("click", (event) => {
+  if (document.querySelector("#login_button").textContent === "Login") {
+    get_request();
+  } else {
+    post_request();
+  }
 });
 
-
-async function get_request() {
+async function get_request(request) {
   const username = document.querySelector("input[type='username']");
   const password = document.querySelector("input[type='password']");
 
+  server_alert("Contacting Server...");
+
   const get_req = new Request(
-    `${request}?action=check_credentials&user_name=${username.value}&password=${password.value}`
+    `https://teaching.maumt.se/apis/access/?action=check_credentials&user_name=${username.value}&password=${password.value}`
   );
-    let response = await fetch_data(get_req);
+  let response = await fetch_data(get_req);
+  let resource = await response.json();
 
-    if(response.status == 200){
+  console.log(resource);
+  remove_server_alert();
 
-    //  localStorage.setIem("user_name", username.value); 
-
-      start_quiz(username.value);
-
-    } else {
-      document.querySelector("#comment").textContent = "Wrong username or password";
+  if (response.status == 200) {
+    start_quiz(username.value);
+  } else {
+    if (response.status === 404) {
+      document.querySelector("#comment").textContent =
+        "Wrong username or password";
       document.querySelector("#comment").style.backgroundColor = "white";
     }
 
+    if (response.status === 409) {
+      document.querySelector("#comment").textContent =
+        "Wrong username or password";
+      document.querySelector("#comment").style.backgroundColor = "white";
+    }
+
+    if (response.status === 418) {
+      response_alert("The server thinks it's not a tepot.");
+    }
+  }
 }
 
-async function add_new_user(post) {
-  console.log("inne");
+async function post_request(request) {
   const username = document.querySelector("input[type='username']");
   const password = document.querySelector("input[type='password']");
 
-  const post_req = await fetch_data(
-    new Request(request, {
+  server_alert("Contacting Server");
+
+  try {
+    const post = {
+      action: "register",
+      user_name: username.value,
+      password: password.value,
+    };
+
+    const options = {
       method: "POST",
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-      body: JSON.stringify({
-        action: "register",
-        user_name: username.value,
-        password: password.value,
-      }),
-    })
-  );
+      headers: { "Content-type": "application/json;" },
+      body: JSON.stringify(post),
+    };
 
-  console.log(post_req)
+    const post_req = new Request(
+      `https://teaching.maumt.se/apis/access/`,
+      options
+    );
+    let response = await fetch_data(post_req);
+    let resource = await response.json();
 
-  if (post_req.status == 200) {
-    let feedback = document.querySelector(".feedback");
-    let feedback_background = document.querySelector(".feedback_background");
-    feedback_background.classList.add("show");
-    feedback.classList.add("show");  
-    feedback.innerHTML = `
-    <p> Registration complete <br>
-    Please proceed to login. </p>
-    <button> close</button>`
-  
-    feedback.querySelector("button").addEventListener("click", e => { 
-      feedback.classList.remove("show")
-      feedback_background.classList.remove("show");
-    })
+    console.log(resource);
+    remove_server_alert();
 
-  } else {
-    switch(post_req.status) {
-
-      case 418:
-        console.log("The server thinks it's not a teapot!")
-        break;
-
-      case 409:
-        console.log("Sorry, that name already exists. Please try with another one.")
-        break;
-
-      case 400:
-        console.log("There seems to be a NetworkError, please check you're connection.")
-        break;
+    if (response.status === 200) {
+      response_alert("Registration Complete. Please proceed to login.");
     }
+
+    if (response.status === 409) {
+      response_alert("Sorry, that name is taken. Please try another one.");
+    }
+
+    if (response.status === 400) {
+      response_alert(
+        "There seems to be a Network Error, please check your connection."
+      );
+    }
+
+    if (response.status === 418) {
+      response_alert("The server thinks it's not a tepot.");
+    }
+  } catch (error) {
+    console.log(error);
   }
 }

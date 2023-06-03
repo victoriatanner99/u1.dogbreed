@@ -61,15 +61,16 @@ footer {
   grid-row: none;
 }
 
-
 .feedback{ 
   visibility: hidden;
-  top: 30%;
-  left: 30%; 
   padding: 20px;
   font-size: 20px;
   border-radius: 10px;
+  margin: 30vh 0 0 100px;
+
   position: absolute;
+  display: flex;
+  flex-direction: column;
 }
 
 .feedback_button{
@@ -84,15 +85,14 @@ footer {
 }
 
 .feedback_background.show{
-  height: 686px;
+  height: 685px;
   width: 357px;
   border-radius: 30px;
+  margin: -9px 0 0 -10px;
 
   visibility: visible;
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
-  top: 8px;
-  left: 327px;
 } 
 
 #name_bar>.account_name {

@@ -41,6 +41,7 @@ for (let i = 0; i < options.length; i++){
   function response() { 
     let feedback = document.querySelector(".feedback");
     let feedback_background = document.querySelector(".feedback_background");
+    
     if(answer_dom.innerText === dog_object.name){
      feedback.style.backgroundColor = "green";
      feedback.classList.add("show");  
